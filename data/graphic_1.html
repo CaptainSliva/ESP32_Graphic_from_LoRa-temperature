@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>График температуры</title>
+    <link rel="stylesheet" href="index.css" />
+    <!-- <link rel="stylesheet" href="entireframework.min.css" /> -->
+    <script
+      src="chart.min.js"
+    ></script>
+    <script src="index_1.js"></script>
+  </head>
+  <body>
+    <nav class="nav" tabindex="-1" onclick="this.focus()">
+      <div class="container">
+
+      </div>
+    </nav>
+    <div class="container">
+      <div class="hero">
+        <h1>График температуры 1</h1>
+        <div class="chart-container">
+          <canvas id="myChart" width="100%" height="40%"></canvas>
+        </div>
+      </div>
+    </div>	
+	<div class="menu">
+		<button onclick="redirect(1);">Перезагрузить страницу</button>
+			
+		<button onclick="redirect(2);">График 2</button>
+		<script>
+			function redirect(i){window.location = `http://${window.location.hostname}/graphic_${i}.html`;}
+			// function redirect(i){window.location = 'file:///C:/Users/%D0%94%D0%B8%D0%BC%D0%B0/Documents/Arduino/ESP32_Graphic_from_LoRa-temperature/data/graphic_'+i+'.html';}
+		</script>
+	</div>
+	
+		<script type="text/javascript">
+			
+			/* функция добавления ведущих нулей */
+			/* (если число меньше десяти, перед числом добавляем ноль) */
+			function zero_first_format(value)
+			{
+				if (value < 10)
+				{
+					value='0'+value;
+				}
+				return value;
+			}
+
+			/* функция получения текущей даты и времени */
+			function date_time()
+			{
+			var xhttp = new XMLHttpRequest();
+				var current_datetime = new Date();
+				var day = zero_first_format(current_datetime.getDate());
+				var month = zero_first_format(current_datetime.getMonth()+1);
+				var year = current_datetime.getFullYear();
+				var hours = zero_first_format(current_datetime.getHours());
+				var minutes = zero_first_format(current_datetime.getMinutes());
+				var seconds = zero_first_format(current_datetime.getSeconds());
+
+				return day+"."+month+"."+year+" "+hours+":"+minutes+":"+seconds;
+				
+			}
+
+			/* выводим текущую дату и время на сайт в блок с id "current_date_time_block" */
+			mySyperGetQuestion = "/get?input1="+date_time();
+			var x = new XMLHttpRequest();
+			x.open("GET", mySyperGetQuestion, true);
+			x.send(null);
+		//const button = document.createElement('button');
+		//button.setAttribute('type', 'button');
+		//button.classList.add('btn');
+		//button.textContent = 'Нажми меня';
+		//button.addEventListener('click', () => {
+		// var xhr = new XMLHttpRequest();
+		//	xhr.open("GET", "/get?input1=1234567", true);
+		//});
+		//document.body.append(button);
+
+
+		
+
+		</script>
+		
+		
+  </body>
+</html>
